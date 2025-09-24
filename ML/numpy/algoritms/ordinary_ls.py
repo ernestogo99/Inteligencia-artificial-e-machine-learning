@@ -5,7 +5,7 @@ class OrdinaryLS:
         self.params=None
 
 
-
+    
     def fit(self,x:np.ndarray,y:np.ndarray):
         y=np.asarray(y).reshape(-1)
         x_b=np.hstack([np.ones((x.shape[0],1)),x])

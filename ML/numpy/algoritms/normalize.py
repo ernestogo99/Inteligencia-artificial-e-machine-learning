@@ -21,6 +21,13 @@ class Normalize:
         dataset_norm=(self.dataset - self.mean())/self.std()
         return dataset_norm
     
+    def desnormalize(self):
+        dataset_norm=self.normalize()
+        dataset_original=(dataset_norm * self.std()) + self.mean() 
+        return dataset_original
+    
+
+    
 
     
 
