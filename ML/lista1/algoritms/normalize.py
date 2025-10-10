@@ -1,32 +1,42 @@
 import numpy as np
-class Normalize:
-    def __init__(self,dataset:np.ndarray):
-        self.dataset=dataset
+class StandardScaler:
+    def __init__(self):
+        self.mean_ = None
+        self.std_ = None
 
+    def fit(self, X: np.ndarray):
+        self.mean_ = X.mean(axis=0)
+        self.std_ = X.std(axis=0)
+        return self
+
+    def transform(self, X: np.ndarray) -> np.ndarray:
+        return (X - self.mean_) / self.std_
+
+    def fit_transform(self, X:np.ndarray)->np.ndarray:
+        return self.fit(X).transform(X)
+
+    def inverse_transform(self, X_norm: np.ndarray) -> np.ndarray:
+        return (X_norm * self.std_) + self.mean_
+
+
+
+class MinMaxScaler:
+    def __init__(self):
+        self.min_=None
+        self.max_=None
+        
+    def fit(self, X):
+        self.min_ = np.min(X, axis=0)
+        self.max_ = np.max(X, axis=0)
+        return self
     
-    def length(self):
-        return len(self.dataset)
-
-
-    def mean(self):
-        return self.dataset.mean(axis=0)
-
-
-    def std(self):
-        dataset_str=np.sqrt((1/(self.length()-1)) * np.sum((self.dataset -self.mean())**2,axis=0)) 
-        return dataset_str
+    def transform(self, X)->np.ndarray:
+        return (X - self.min_) / (self.max_ - self.min_)
     
-
-    def normalize(self):
-        dataset_norm=(self.dataset - self.mean())/self.std()
-        return dataset_norm
+    def fit_transform(self, X):
+        return self.fit(X).transform(X)
     
-    def desnormalize(self):
-        dataset_norm=self.normalize()
-        dataset_original=(dataset_norm * self.std()) + self.mean() 
-        return dataset_original
-    
-
-    
+    def inverse_transform(self, X_norm):
+        return X_norm * (self.max_ - self.min_) + self.min_
 
     
