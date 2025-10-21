@@ -34,13 +34,7 @@ class LinearRegressionSGD:
 
     def get_params(self)->np.ndarray:
         return self.w
-    
 
-    def get_loss_history(self)->np.ndarray:
-        return np.array(self.loss_history)
-           
-    
-    
     
     def predict(self, X: np.ndarray) -> np.ndarray:
         N = X.shape[0]
