@@ -34,9 +34,6 @@ class LogisticRegressionGD:
         return (self.predict_proba(X) >= 0.5).astype(int)
 
 
-
-import numpy as np
-
 class LogisticRegressionSoftmaxGD:
     def __init__(self, alpha=0.01, iterations=500):
         self.alpha = alpha
