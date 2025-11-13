@@ -96,7 +96,7 @@ def kfold(model ,features_data, label_data, num_folds = 10):
         model.loss_history = []
 
 
-      model.fit(x_train_fold.values, y_train_fold.values)
+      model.fit(x_train_fold, y_train_fold)
       predictions = model.predict(x_teste)
 
       y_teste = np.array(y_teste)
