@@ -23,7 +23,7 @@ def q2():
     x_vehicles=dataset_vehicles.iloc[:,:-1]
     y_vehicles=dataset_vehicles.iloc[:,-1]
     softmax=LogisticRegressionSoftmaxGD(alpha=0.9)
-    #kfold(model=softmax,features_data=x_vehicles,label_data=y_vehicles)
+    kfold(model=softmax,features_data=x_vehicles,label_data=y_vehicles)
     discriminante=GaussianDiscriminantAnalysis()
     kfold(model=discriminante,features_data=x_vehicles,label_data=y_vehicles)    
 

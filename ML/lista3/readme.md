@@ -1,20 +1,21 @@
-## Lista 2 Aprendizagem de máquina(Regressão Logística e métodos estatísticos)
+## Lista 3 Aprendizagem de máquina(KNN e Árvores de decisão)
 
 ## Datasets
 
-- breastcancer
-- vehicle
+- kc2
 
 # Destaques
 
-Nesta lista, Tratamos de Regressão logística e métodos estatísticos, na questão 1
-além de plotar os resultados.Na questão 2 nós dividimos o conjunto de dados em treino e teste, treinamos modelos utilizando regressão polinomial, calculamos o RMSE e utilizamos a regularização L2.
+Nesta lista, Tratamos da avaliação de modelos de classificação binária utilizando knn e
+árvores de decisão
 
 # Tecnologias Utilizadas
 
 - python: linguagem de programação escolhida
 - numpy: biblioteca para facilitar calculos numéricos
 - matplolib: biblioteca utilizada para visualização de dados
+- scikit-learn: biblioteca utilizada para machine learning
+- pandas: biblioteca utilizada para manipulação e análise de dados
 
 # Como rodar o projeto
 
