@@ -91,4 +91,4 @@ def q2():
     print(f'a acuracia do modelo eh {acuracia}')
 
 if __name__ =="__main__":
-    q2()
+    main()

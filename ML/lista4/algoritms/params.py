@@ -1,5 +1,4 @@
 from models.neural_network import MLPClassifier,MLPRegressor
-#from sklearn.neural_network import MLPClassifier,MLPRegressor
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -10,7 +9,6 @@ def test_hyperparameter_rec(
 ):
     """
     Calcula recursivamente as métricas para todas as combinações de hiperparâmetros,
-    com pequenos logs para rastreamento.
     """
 
 
