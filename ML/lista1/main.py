@@ -13,6 +13,8 @@ def main():
     artificial_data=np.genfromtxt('data/artificial1d.csv',delimiter=',')
     x=artificial_data[:,[0]]
     y=artificial_data[:,[1]]
+    print(len(x))
+    print(len(y))
     ordinary_ls=OrdinaryLS()
     metrics=Metrics()
     ordinary_ls.fit(x,y)
@@ -197,4 +199,4 @@ def questao_2_d():
 
 
 if __name__ == "__main__":
-    questao_2_d()
+    main()
