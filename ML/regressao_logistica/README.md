@@ -67,13 +67,12 @@ Eles automatizam o processo de testar diferentes combinações de hiperparâmetr
 
 exemplo:
 
-```
 # Exemplo de Matriz de Confusão
 
-|                       | Predito Positivo | Predito Negativo |
-|-----------------------|------------------|------------------|
-| **Real Positivo**     | TP = 90          | FN = 10          |
-| **Real Negativo**     | FP = 20          | TN = 880         |
+|                   | Predito Positivo | Predito Negativo |
+| ----------------- | ---------------- | ---------------- |
+| **Real Positivo** | TP = 90          | FN = 10          |
+| **Real Negativo** | FP = 20          | TN = 880         |
 
 ---
 
@@ -105,8 +104,6 @@ Accuracy = \frac{970}{1000} = 0.97
 \]
 
 **Acurácia = 97%**
-
----
 
 ## Precisão
 
@@ -165,6 +162,7 @@ F1 \approx 0.857
 \]
 
 **F1-score ≈ 85.7%**
+
 ```
 
 ## Regressão logística
@@ -191,25 +189,29 @@ O K-Fold:
 ## Passo a passo para resolver um problema de classificação
 
 ```
+
 Entendimento do problema
-        ↓
+↓
 EDA
-        ↓
+↓
 Pré-processamento
-        ↓
+↓
 Train/Test Split
-        ↓
+↓
 Pipeline
-        ↓
+↓
 Baseline Models
-        ↓
+↓
 Grid Search + Cross Validation
-        ↓
+↓
 Nested Cross Validation
-        ↓
+↓
 Avaliação com múltiplas métricas
-        ↓
+↓
 Comparação de modelos
-        ↓
+↓
 Modelo final
+
+```
+
 ```
