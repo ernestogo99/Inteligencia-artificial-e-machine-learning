@@ -1,73 +1,213 @@
-# Machine learning
+# Machine Learning
 
-- Busca automatizar tarefas intelectuais normalmente associadas
-  aos humanos.
+## 📚 Sumário
 
-- Busca algoritmos que permitam aprender a resolver uma tarefa
-  (não necessariamente como humanos a resolvem) a partir de dados
-  disponíveis.
+- [O que é Machine Learning](#-o-que-é-machine-learning)
+- [Tarefa de Classificação](#-tarefa-de-classificação)
+- [Normalização](#-normalização)
+- [Parâmetros e Hiperparâmetros](#-parâmetros-e-hiperparâmetros)
+- [Grid Search e Random Search](#-grid-search-e-random-search)
+- [Métricas de Avaliação](#-métricas-de-avaliação)
+- [Regressão Logística](#-regressão-logística)
+- [K-Fold Cross Validation](#-k-fold-cross-validation)
+- [Fluxo de um Problema de Classificação](#-fluxo-de-um-problema-de-classificação)
 
-## Tarefa de classificação
+---
 
-Relaciona vetores de entrada a um número finito de
-rótulos/categorias/classes de sa´ıda.
+# 🧠 O que é Machine Learning
 
-- Classificação binária: Somente duas classes (sim/não,
-  positivo/negativo, gato/cachorro, etc.)
-- Classificação multiclasse: Mais de duas classes (dígitos,
-  letras, raças de cachorro, marcas de carro, etc.)
+Machine Learning é uma área da inteligência artificial que busca desenvolver algoritmos capazes de aprender padrões a partir de dados, permitindo automatizar tarefas normalmente associadas ao raciocínio humano.
 
-## Normalização
+Seu objetivo é construir modelos capazes de:
 
-- A normalização é uma técnica de pré-processamento usada para colocar os dados em uma mesma escala.
+- aprender com exemplos;
+- identificar padrões;
+- realizar previsões;
+- tomar decisões automaticamente.
 
-Ela é muito importante porque muitos algoritmos de Machine Learning são sensíveis à magnitude das variáveis.
+---
 
-A normalização busca:
+# 🎯 Tarefa de Classificação
 
-- equilibrar as escalas
-- evitar dominância de atributos
-- melhorar treinamento
-- acelerar convergência
+A classificação consiste em relacionar vetores de entrada a um conjunto finito de rótulos, categorias ou classes de saída.
 
-## Parâmetro e hiperparâmetro
+## Tipos de Classificação
 
-Parâmetro → aprendido automaticamente pelo modelo durante o treinamento
+### Classificação Binária
 
-Hiperparâmetros
+Problemas que possuem apenas duas classes.
 
-São configurações escolhidas antes do treinamento que controlam:
+Exemplos:
 
-comportamento do algoritmo
-capacidade do modelo
-processo de aprendizado
+- sim/não
+- positivo/negativo
+- fraude/não fraude
+- gato/cachorro
 
-Eles não são aprendidos diretamente dos dados.
+---
 
-Selecionamos os melhores hiperparâmetros por meio do Grid Search ou Random Search.
+### Classificação Multiclasse
 
-Eles automatizam o processo de testar diferentes combinações de hiperparâmetros e escolher a que produz o melhor desempenho.
+Problemas com mais de duas classes.
 
-- O Grid Search testa todas as combinações possíveis de hiperparâmetros definidos em uma grade (grid).
+Exemplos:
 
-- O Random Search escolhe combinações de hiperparâmetros aleatoriamente, em vez de testar tudo, ele amostra apenas algumas combinações.
+- reconhecimento de dígitos;
+- classificação de letras;
+- raças de cachorro;
+- marcas de veículos.
 
-## Métricas
+---
 
-- Matriz de confusão: Tabela que sumariza os erros e acertos de um classificador
-- Acurácia: Percentual de acertos gerais do modelo, considerando todos os
-  verdadeiros positivos, verdadeiros negativos, falsos positivos e
-  falsos negativos.
-- Acurácia = TP+TN/+TP+TN FP+FN​
-- Precisão: Proporção de exemplos corretamente classificados como positivos em relação ao total de exemplos classificados como positivos.
-- Precisão = TP/TP + FP
-- Revocação: dentre todos os positivos reais, quantos o modelo conseguiu encontrar.
-- Revocação = TP/TP + FN
-- f1_score:Média harmônica entre precisão e revocação, usada quando há um balanço entre as duas métricas.
+# ⚙️ Normalização
 
-exemplo:
+A normalização é uma técnica de pré-processamento utilizada para colocar os dados em uma mesma escala.
 
-# Exemplo de Matriz de Confusão
+Ela é importante porque muitos algoritmos de Machine Learning são sensíveis à magnitude das variáveis.
+
+## Objetivos da Normalização
+
+- equilibrar escalas;
+- evitar dominância de atributos;
+- melhorar o treinamento;
+- acelerar convergência;
+- melhorar desempenho do modelo.
+
+---
+
+# 🧩 Parâmetros e Hiperparâmetros
+
+## Parâmetros
+
+São valores aprendidos automaticamente pelo modelo durante o treinamento.
+
+Exemplos:
+
+- pesos da regressão logística;
+- pesos de redes neurais;
+- médias e variâncias do Naive Bayes.
+
+---
+
+## Hiperparâmetros
+
+São configurações definidas antes do treinamento que controlam:
+
+- comportamento do algoritmo;
+- capacidade do modelo;
+- processo de aprendizado.
+
+Os hiperparâmetros não são aprendidos diretamente dos dados.
+
+---
+
+# 🔍 Grid Search e Random Search
+
+Técnicas utilizadas para encontrar os melhores hiperparâmetros.
+
+## Grid Search
+
+O Grid Search testa todas as combinações possíveis de hiperparâmetros definidas em uma grade (_grid_).
+
+### Vantagens
+
+- busca exaustiva;
+- simples de implementar;
+- garante avaliação de todas as combinações.
+
+### Desvantagens
+
+- alto custo computacional;
+- pouco escalável.
+
+---
+
+## Random Search
+
+O Random Search seleciona combinações aleatórias de hiperparâmetros.
+
+### Vantagens
+
+- menor custo computacional;
+- mais eficiente em grandes espaços de busca;
+- boa escalabilidade.
+
+### Desvantagens
+
+- não garante explorar todas as combinações.
+
+---
+
+# 📊 Métricas de Avaliação
+
+## Matriz de Confusão
+
+Tabela utilizada para resumir os acertos e erros de um classificador.
+
+|                   | Predito Positivo | Predito Negativo |
+| ----------------- | ---------------- | ---------------- |
+| **Real Positivo** | TP               | FN               |
+| **Real Negativo** | FP               | TN               |
+
+Onde:
+
+- **TP** → True Positive
+- **TN** → True Negative
+- **FP** → False Positive
+- **FN** → False Negative
+
+---
+
+## Acurácia
+
+Mede o percentual total de acertos do modelo.
+
+\[
+Accuracy =
+\frac{TP + TN}
+{TP + TN + FP + FN}
+\]
+
+---
+
+## Precisão
+
+Mede quantos positivos previstos realmente eram positivos.
+
+\[
+Precision =
+\frac{TP}
+{TP + FP}
+\]
+
+---
+
+## Revocação (Recall)
+
+Mede quantos positivos reais foram encontrados pelo modelo.
+
+\[
+Recall =
+\frac{TP}
+{TP + FN}
+\]
+
+---
+
+## F1-score
+
+Média harmônica entre precisão e recall.
+
+\[
+F1 =
+2 \cdot
+\frac{Precision \cdot Recall}
+{Precision + Recall}
+\]
+
+---
+
+# 📌 Exemplo de Matriz de Confusão
 
 |                   | Predito Positivo | Predito Negativo |
 | ----------------- | ---------------- | ---------------- |
@@ -76,142 +216,123 @@ exemplo:
 
 ---
 
-# Interpretação
+## Interpretação
 
-- **TP (True Positive)**: o modelo previu positivo e acertou.
-- **TN (True Negative)**: o modelo previu negativo e acertou.
-- **FP (False Positive)**: o modelo previu positivo, mas errou.
-- **FN (False Negative)**: o modelo previu negativo, mas errou.
+- **TP**: o modelo previu positivo e acertou;
+- **TN**: o modelo previu negativo e acertou;
+- **FP**: o modelo previu positivo, mas errou;
+- **FN**: o modelo previu negativo, mas errou.
 
 ---
 
-# Cálculo das Métricas
+## Cálculo das Métricas
 
-## Acurácia
-
-Acurácia mede o desempenho geral do modelo.
+### Acurácia
 
 \[
-Accuracy = \frac{TP + TN}{TP + TN + FP + FN}
-\]
-
-\[
-Accuracy = \frac{90 + 880}{90 + 880 + 20 + 10}
-\]
-
-\[
-Accuracy = \frac{970}{1000} = 0.97
+Accuracy =
+\frac{90 + 880}
+{90 + 880 + 20 + 10}
+=
+\frac{970}{1000}
+=
+0.97
 \]
 
 **Acurácia = 97%**
 
-## Precisão
+---
 
-Precisão mede quantos positivos previstos realmente eram positivos.
-
-\[
-Precision = \frac{TP}{TP + FP}
-\]
+### Precisão
 
 \[
-Precision = \frac{90}{90 + 20}
-\]
-
-\[
-Precision = \frac{90}{110} \approx 0.818
+Precision =
+\frac{90}
+{90 + 20}
+=
+\frac{90}{110}
+\approx 0.818
 \]
 
 **Precisão ≈ 81.8%**
 
 ---
 
-## Revocação (Recall)
-
-Recall mede quantos positivos reais foram encontrados.
+### Recall
 
 \[
-Recall = \frac{TP}{TP + FN}
-\]
-
-\[
-Recall = \frac{90}{90 + 10}
-\]
-
-\[
-Recall = \frac{90}{100} = 0.90
+Recall =
+\frac{90}
+{90 + 10}
+=
+\frac{90}{100}
+=
+0.90
 \]
 
 **Recall = 90%**
 
 ---
 
-## F1-score
-
-F1-score é a média harmônica entre precisão e recall.
+### F1-score
 
 \[
-F1 = 2 \cdot \frac{Precision \cdot Recall}{Precision + Recall}
-\]
-
-\[
-F1 = 2 \cdot \frac{0.818 \cdot 0.90}{0.818 + 0.90}
-\]
-
-\[
-F1 \approx 0.857
+F1 =
+2 \cdot
+\frac{0.818 \cdot 0.90}
+{0.818 + 0.90}
+\approx 0.857
 \]
 
 **F1-score ≈ 85.7%**
 
-```
+---
 
-## Regressão logística
+# 📈 Regressão Logística
 
-A Regressão Logística é um algoritmo de aprendizado supervisionado usado principalmente para problemas de classificação, especialmente classificação binária.
+A Regressão Logística é um algoritmo de aprendizado supervisionado utilizado principalmente em problemas de classificação, especialmente classificação binária.
 
-Apesar do nome “regressão”, ela não prevê valores contínuos; ela prevê a probabilidade de um exemplo pertencer a uma determinada classe.
+Apesar do nome “regressão”, o modelo não prevê valores contínuos. Seu objetivo é estimar a probabilidade de uma instância pertencer a determinada classe.
 
-## K-fold
+---
 
-O K-Fold Cross Validation é uma técnica de validação cruzada usada para avaliar modelos de Machine Learning de forma mais robusta e confiável.
+# 🔄 K-Fold Cross Validation
 
-A ideia principal é:
+O K-Fold Cross Validation é uma técnica de validação cruzada utilizada para avaliar modelos de Machine Learning de forma mais robusta.
 
-dividir os dados em várias partes e treinar/testar o modelo múltiplas vezes.
+O conjunto de dados é dividido em \(K\) partes (_folds_). O modelo é treinado múltiplas vezes, utilizando diferentes subconjuntos para treino e teste.
 
-O K-Fold:
+## Benefícios
 
-- reduz variância da avaliação
-- usa melhor os dados
-- produz estimativas mais confiáveis
-- reduz dependência de um único split
+- reduz variância da avaliação;
+- melhora uso dos dados;
+- produz estimativas mais confiáveis;
+- reduz dependência de um único split.
 
-## Passo a passo para resolver um problema de classificação
+---
 
-```
+# 🚀 Fluxo de um Problema de Classificação
 
+```text
 Entendimento do problema
-↓
+        ↓
 EDA
-↓
+        ↓
 Pré-processamento
-↓
+        ↓
 Train/Test Split
-↓
+        ↓
 Pipeline
-↓
+        ↓
 Baseline Models
-↓
+        ↓
 Grid Search + Cross Validation
-↓
+        ↓
 Nested Cross Validation
-↓
+        ↓
 Avaliação com múltiplas métricas
-↓
+        ↓
 Comparação de modelos
-↓
+        ↓
 Modelo final
-
-```
-
 ```
