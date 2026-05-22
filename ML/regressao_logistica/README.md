@@ -9,6 +9,7 @@
 - [Grid Search e Random Search](#-grid-search-e-random-search)
 - [Métricas de Avaliação](#-métricas-de-avaliação)
 - [Regressão Logística](#-regressão-logística)
+- [Train/Test Split](#-traintest-split)
 - [K-Fold Cross Validation](#-k-fold-cross-validation)
 - [Fluxo de um Problema de Classificação](#-fluxo-de-um-problema-de-classificação)
 
@@ -162,11 +163,9 @@ Onde:
 
 Mede o percentual total de acertos do modelo.
 
-\[
-Accuracy =
-\frac{TP + TN}
-{TP + TN + FP + FN}
-\]
+```text
+Accuracy = (TP + TN) / (TP + TN + FP + FN)
+```
 
 ---
 
@@ -174,11 +173,9 @@ Accuracy =
 
 Mede quantos positivos previstos realmente eram positivos.
 
-\[
-Precision =
-\frac{TP}
-{TP + FP}
-\]
+```text
+Precision = TP / (TP + FP)
+```
 
 ---
 
@@ -186,11 +183,9 @@ Precision =
 
 Mede quantos positivos reais foram encontrados pelo modelo.
 
-\[
-Recall =
-\frac{TP}
-{TP + FN}
-\]
+```text
+Recall = TP / (TP + FN)
+```
 
 ---
 
@@ -198,12 +193,9 @@ Recall =
 
 Média harmônica entre precisão e recall.
 
-\[
-F1 =
-2 \cdot
-\frac{Precision \cdot Recall}
-{Precision + Recall}
-\]
+```text
+F1 = 2 * (Precision * Recall) / (Precision + Recall)
+```
 
 ---
 
@@ -229,15 +221,15 @@ F1 =
 
 ### Acurácia
 
-\[
+```text
 Accuracy =
-\frac{90 + 880}
-{90 + 880 + 20 + 10}
-=
-\frac{970}{1000}
-=
-0.97
-\]
+(90 + 880) / (90 + 880 + 20 + 10)
+
+Accuracy =
+970 / 1000
+
+Accuracy = 0.97
+```
 
 **Acurácia = 97%**
 
@@ -245,14 +237,15 @@ Accuracy =
 
 ### Precisão
 
-\[
+```text
 Precision =
-\frac{90}
-{90 + 20}
-=
-\frac{90}{110}
-\approx 0.818
-\]
+90 / (90 + 20)
+
+Precision =
+90 / 110
+
+Precision ≈ 0.818
+```
 
 **Precisão ≈ 81.8%**
 
@@ -260,15 +253,15 @@ Precision =
 
 ### Recall
 
-\[
+```text
 Recall =
-\frac{90}
-{90 + 10}
-=
-\frac{90}{100}
-=
-0.90
-\]
+90 / (90 + 10)
+
+Recall =
+90 / 100
+
+Recall = 0.90
+```
 
 **Recall = 90%**
 
@@ -276,23 +269,89 @@ Recall =
 
 ### F1-score
 
-\[
+```text
 F1 =
-2 \cdot
-\frac{0.818 \cdot 0.90}
-{0.818 + 0.90}
-\approx 0.857
-\]
+2 * (0.818 * 0.90) / (0.818 + 0.90)
 
-**F1-score ≈ 85.7%**
+F1 ≈ 0.857
+```
 
----
+## **F1-score ≈ 85.7%**
 
 # 📈 Regressão Logística
 
 A Regressão Logística é um algoritmo de aprendizado supervisionado utilizado principalmente em problemas de classificação, especialmente classificação binária.
 
 Apesar do nome “regressão”, o modelo não prevê valores contínuos. Seu objetivo é estimar a probabilidade de uma instância pertencer a determinada classe.
+
+---
+
+---
+
+# Train/Test Split
+
+O Train/Test Split é uma técnica utilizada para separar os dados em dois conjuntos:
+
+- conjunto de treino;
+- conjunto de teste.
+
+O objetivo é avaliar a capacidade de generalização do modelo em dados nunca vistos durante o treinamento.
+
+---
+
+## Funcionamento
+
+Normalmente os dados são divididos em proporções como:
+
+- 80% treino / 20% teste;
+- 70% treino / 30% teste.
+
+O modelo aprende padrões utilizando o conjunto de treino e, posteriormente, é avaliado no conjunto de teste(medir desempenho real, verificar generalização, simular novos dados).
+
+---
+
+## Importância
+
+O Train/Test Split ajuda a:
+
+- evitar overfitting(ir bem em dados de treino e mal nos dados novos);
+- medir generalização(capacidade do modelo funcionar bem em dados nunca vistos);
+- simular dados reais;
+- avaliar desempenho de forma mais confiável.
+
+---
+
+## Exemplo com Scikit-Learn
+
+```python
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.2,
+    random_state=357,
+    stratify=y
+)
+```
+
+---
+
+## Principais Parâmetros
+
+| Parâmetro      | Descrição                     |
+| -------------- | ----------------------------- |
+| `test_size`    | percentual destinado ao teste |
+| `random_state` | garante reprodutibilidade     |
+| `stratify=y`   | mantém proporção das classes  |
+
+---
+
+## Estratificação
+
+O parâmetro `stratify=y` é importante em problemas de classificação porque mantém a proporção original das classes nos conjuntos de treino e teste.
+
+Isso é especialmente importante em datasets desbalanceados.
 
 ---
 
